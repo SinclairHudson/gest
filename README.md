@@ -8,3 +8,5 @@ The same region is analysed again to classify the current gesture the hand is pe
 Finally, all the data is added back up to create a position and gesture of the hand, which can then be mapped to the computer.
 
 #Applications
+There are tons of applications for this, but the first goal is to be able to move around
+windows of applications using only hand gestures.
