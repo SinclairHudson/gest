@@ -14,6 +14,7 @@ for x in range(2373):
                 if z == 1:
                     ycord = i
                     xcord = j
+                    z = 0
                 else:
                     ycord2 = i
                     ycord2 = j
@@ -22,4 +23,12 @@ for x in range(2373):
             continue
         break
     tiny = np.zeros((12,28))
-    ycord=
+    if(ycord == -1): #untouched
+        cv2.imwrite(tiny, "./TinyLabel/"+str(x)+".jpg")
+    elif(ycord2 == -1): #only one hand
+        tiny[(ycord/10)][(xcord/10)] = 255
+        cv2.imwrite(tiny, "./TinyLabel/" + str(x) + ".jpg")
+    else: #two hands
+        tiny[(ycord / 10)][(xcord / 10)] = 255
+        tiny[(ycord2 / 10)][(xcord2 / 10)] = 255
+        cv2.imwrite(tiny, "./TinyLabel/" + str(x) + ".jpg")
