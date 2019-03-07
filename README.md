@@ -9,4 +9,5 @@ Finally, all the data is added back up to create a position and gesture of the h
 
 #Applications
 There are tons of applications for this, but the first goal is to be able to move around
-windows of applications using only hand gestures.
+windows of applications using only hand gestures. This involves simple hand tracking, and only
+two gestures.
