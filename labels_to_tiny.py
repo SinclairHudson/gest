@@ -2,8 +2,10 @@ import cv2
 import numpy as np
 import math
 
-for x in range(2373):
+for x in range(201):
+    print(str(x))
     image = cv2.imread("./Labels/" + str(x) + ".jpg", 0)
+    
     ycord = -1
     xcord = -1
     ycord2 = -1
