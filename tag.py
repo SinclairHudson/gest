@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import os
 from PIL import Image
-z = 201
+z = 253
 for i in range(2374-z):
     print("======================================================")
     label = np.zeros((120,280), dtype=np.uint8)

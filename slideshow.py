@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import os
 from PIL import Image
-i = 201
+i = 253
 for x in range(2374-i):
     image = cv2.imread("./SmallData/"+str(i)+".jpg")
     cv2.imshow(str(i),image)
