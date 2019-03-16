@@ -1,20 +1,14 @@
 from tkinter import *
-from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
-import tkinter.simpledialog
+import numpy as np
+import cv2
+import skimage.measure
 
-for x in range(2000):
-    coordinates = []
-    xcord = -1
-    ycord = -1
-    xcord2 = -1
-    ycord2 = -1
-
+start = 758
+x = start
+for i in range(2000-start):
+    label = np.zeros((120, 280), dtype=np.uint8)
     root = Tk()
-
-    def continuer():
-        print("C")
-
     #setting up a tkinter canvas
     w = Canvas(root, width=1120, height=480)
 
@@ -23,16 +17,18 @@ for x in range(2000):
     original = original.resize((1120,480)) #resize image
     img = ImageTk.PhotoImage(original)
     w.create_image(0, 0, image=img, anchor="nw")
-    b = Button(w, text="Submit", command=continuer)
     w.pack()
 
-    def printcoords(event):
+    def writecoords(event):
         # outputting x and y coords to console
-        coordinates.append([event.x, event.y])
-        print(event.x, event.y)
+        label[event.y//4][event.x//4] = 255 # white pixel where hand is
+        print("Hand at "+str(event.y//4)+" "+str(event.x//4))
 
-    w.bind("<Button 1>",printcoords)
-
+    w.bind("<Button 1>",writecoords)
 
     root.mainloop()
-    print(coordinates)
+    cv2.imwrite("Labels/"+str(x)+".jpg", label)
+    tiny = skimage.measure.block_reduce(label, (10, 10), np.max)
+    cv2.imwrite("./TinyLabels/" + str(x) + ".jpg", tiny)
+    print("Labelled image "+str(x))
+    x = x + 1
