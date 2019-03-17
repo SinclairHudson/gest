@@ -20,3 +20,15 @@ def getBatchRange(batch_size):
         labels = np.vstack((labels, label))
         images = np.vstack((images, image))
     return  images, labels
+
+# this allows the user to quickly check the batch to make sure everything is in order/labels are aligned.
+def checkBatch(batch):
+    print(batch[0].shape)
+    print(batch[1].shape)
+    for x in range(len(batch[0])):
+        cv2.imshow(str(x), batch[0][x])
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        cv2.imshow(str(x), batch[1][x])
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
