@@ -14,16 +14,16 @@ sess = tf.Session()
 
 network = tflearn.input_data([None, 120, 280, 3], name='input')
 network = tflearn.conv_2d(network, 3, 5, activation='leaky_relu', name="small_CONV")
-network = tflearn.conv_2d(network, 3, 10,strides=[1,2,2,1], activation='leaky_relu',name="large_CONV")
-network = tflearn.conv_2d(network, 1, 20,strides=[1,5,5,1], activation='leaky_relu',name="larger_CONV")
+network = tflearn.conv_2d(network, 3, 5,strides=[1,2,2,1], activation='leaky_relu',name="large_CONV")
+network = tflearn.conv_2d(network, 1, 5,strides=[1,5,5,1], activation='leaky_relu',name="larger_CONV")
 network = tflearn.reshape(network, (-1, 12, 28), name ="final")
 #no FULLY CONNECTED!
-network = tflearn.regression(network, optimizer='adam', learning_rate=0.1, # <--impatient
+network = tflearn.regression(network, optimizer='adam', learning_rate=0.05,
                      loss='categorical_crossentropy', name='target')
 model = tflearn.DNN(network, tensorboard_verbose=3, max_checkpoints=3)
 
 print("Loading Model")
-#model.load("current.model")
+model.load("current.model")
 #os.system("tensorboard --logdir=tmp/tflearn_logs/") #start tensorboard
 for x in range(500):
     X, Y = datautil.getBatchRange(batch_size)

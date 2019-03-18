@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import skimage.measure
 
-start = 758
+start = 867
 x = start
 for i in range(2000-start):
     label = np.zeros((120, 280), dtype=np.uint8)
