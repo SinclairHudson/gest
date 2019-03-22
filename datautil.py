@@ -19,7 +19,25 @@ def getBatchRange(batch_size):
         label = np.reshape(label, (1, 12, 28))
         labels = np.vstack((labels, label))
         images = np.vstack((images, image))
-    return  images, labels
+    return images, labels
+
+
+def getBatchPrecision(batch_size):
+    fileList = os.listdir("./HandLabels")
+    i=random.randint(0,len(fileList)-1)
+    image = cv2.imread("./Hands/"+fileList[i])
+    images = np.reshape(image, (1, 50, 50, 3))
+    label = cv2.imread("./HandLabels/"+fileList[i], 0)
+    labels = np.reshape(label, (1, 50, 50))
+    for x in range(batch_size-1):
+        i = random.randint(0, len(fileList) - 1)
+        image = cv2.imread("./Hands/"+fileList[i])
+        image = np.reshape(image, (1, 50, 50, 3))
+        label = cv2.imread("./HandLabels/" +fileList[i], 0)
+        label = np.reshape(label, (1, 50, 50))
+        labels = np.vstack((labels, label))
+        images = np.vstack((images, image))
+    return images, labels
 
 # this allows the user to quickly check the batch to make sure everything is in order/labels are aligned.
 def checkBatch(batch):
