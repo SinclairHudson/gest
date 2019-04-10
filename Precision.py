@@ -1,6 +1,8 @@
 import tflearn
 import datautil
 import tensorflow as tf
+import datetime
+now = datetime.datetime.now()
 import cv2
 import numpy as np
 import os
@@ -33,5 +35,5 @@ for x in range(1000):
     X, Y = datautil.getBatchPrecision(batch_size)
     model.fit({'input': X}, {'target': Y}, n_epoch=32,
               validation_set=({'input': testX}, {'target': testY}),
-              snapshot_step=100, show_metric=True, run_id="Precision-19-03-22")
+              snapshot_step=100, show_metric=True, run_id="Precision-"+str(now))
     model.save("current-pres.model")
